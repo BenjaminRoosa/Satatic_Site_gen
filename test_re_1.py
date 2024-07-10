@@ -1,15 +1,28 @@
-#import unittest
-from re_1 import (
-    extract_markdown_images, extract_markdown_links
-    )
 
-def main():
-    text_with_images = "This is text with an ![image](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/zjjcJKZ.png) and ![another](https://storage.googleapis.com/qvault-webapp-dynamic-assets/course_assets/dfsdkjfd.png)"
-    text_with_links = "This is text with a [link](https://www.example.com) and [another](https://www.example.com/another)"
-    text_with_no_markdown = "This text has no markdown links or images."
+from textnode import (
+    TextNode,
+    text_type_text,
+    text_type_bold,
+    text_type_italic,
+    text_type_code,
+    text_type_image,
+)
+from inline_markdown import(
+    split_nodes_image,
+    split_nodes_link,
+)
+#def main():
+# Testing
+#    node = TextNode(
+#    "This is a link to [Google](https://google.com) and another [link](https://example.com)",
+#    text_type_text,
+#    )      
 
-    print("Extracted Images:", extract_markdown_images(text_with_images))
-    print("Extracted Links:", extract_markdown_links(text_with_links))
-    print("Extracted from No Markdown:", extract_markdown_images(text_with_no_markdown), extract_markdown_links(text_with_no_markdown))
+#    new_nodes = split_nodes_link([node])
 
-main()
+#    for n in new_nodes: 
+#        print(f"text: {n.text}, text_type: {n.text_type}, url: {n.url}")
+#main()
+# Expected output:
+# text: This is a link to , text_type: text, url: None
+# text: Google, text_type: link
