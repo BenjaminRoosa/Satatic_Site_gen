@@ -1,22 +1,11 @@
 
-from textnode import (
-    TextNode,
-    text_type_text,
-    text_type_bold,
-    text_type_italic,
-    text_type_code,
-    text_type_image,
-    text_type_link,
-)
+from textnode import *
 
 
 from re_1 import( 
     extract_markdown_links, extract_markdown_images
 )
-def markdown_to_blocks(markdown):
-    raw_blocks = markdown.split('\n\n')
-    blocks = [block.strip() for block in raw_blocks if block.strip()]
-    return blocks
+
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     new_nodes = []
     for old_node in old_nodes:
@@ -78,8 +67,8 @@ def split_nodes_link(old_nodes):
 def text_to_textnodes(text):
     #create first text_node
     working_section = [TextNode(text, text_type_text)]
-    finall_section = []
-    completed_steps = 0
+    #finall_section = []
+    #completed_steps = 0
     
     #extract bold
     #bold_extract_complet = False
@@ -116,27 +105,3 @@ def text_to_textnodes(text):
     #else:
         #working_section = images_section_six
     return images_section_six
-
-def main():
-    markdown_test_input = """This is **bolded** paragraph
-
-
-This is another paragraph with *italic* text and `code` here
-This is the same paragraph on a new line
-
-* This is a list
-* with items
-
-
-With more
-
-
-Blank lines"""
-
-# Call the function
-    output_blocks = markdown_to_blocks(markdown_test_input)
-
-# Print the output
-    for i, block in enumerate(output_blocks):
-        print(f"Block {i+1}:\n{block}\n")
-main()

@@ -48,3 +48,33 @@ def block_to_block_type(block):
 
 
     return block_type_paragraph
+
+def block_header_level(block):
+    for level in range(1, 7):
+        if block.startswith("#" * level + " "):
+            return level
+def block_content(block, block_type):
+    #heading
+    if block_type == block_type_heading:
+        level = block_header_level(block)
+        heading_md = "#" * level + " "
+        
+        return block.lstrip(heading_md)
+    #code
+    if block_type == block_type_code:
+        return block.lstrip("`").rstrip("`")
+    #quote
+    if block_type == block_type_paragraph:
+        block_split = block.split("\n")
+        new_block = []
+        for i in block_split:
+            new_block.append(i.lstrip(">")+ "\n")
+        return new_block
+    #unordered_list
+    if block_type == block_type_unordered_list:
+        block_split = block.split("\n")
+        new_block = []
+        for i in block_split:
+            new_block.append(i.rplace("")+ "\n")
+        return new_block
+    #ordered_list
